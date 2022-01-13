@@ -1,4 +1,5 @@
 const cardList = document.querySelector(".card-list")
+const xhr = new XMLHttpRequest()
 
 function printCard(list, count){
   for(let i=0;i<count;i++){
@@ -29,7 +30,6 @@ function printCard(list, count){
   }
 }
 
-const xhr = new XMLHttpRequest()
 xhr.open('GET', './store.json', true)
 xhr.send()
 
@@ -37,11 +37,48 @@ xhr.onload = (data) => {
   if(xhr.status == 200){
     const responseObj = JSON.parse(data.target.responseText)
     printCard(responseObj, responseObj.products.length)
-    console.log(cardList)
-    console.log(`responseObj.products[${1}].photo`)
-    console.log(responseObj.products[0].photo)
+    console.log(responseObj)
   }
   else{
     console.log("통신 실패")
   }
 }
+
+// fillter
+const form = document.querySelector("form")
+const input = document.querySelector("input")
+const fillterProducts = {"products": []}
+
+function removeList(count){
+  for (let i=0;i<count;i++){
+    cardList.remove(cardList.firstElementChild)
+  }
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault()
+  const inputValue = input.value
+  
+  xhr.open('GET', './store.json', true)
+  xhr.send()
+
+  xhr.onload = (data) => {
+    if(xhr.status == 200){
+      const responseObj = JSON.parse(data.target.responseText)
+      const cardCount = document.querySelectorAll(".card")
+      removeList(cardCount.length)
+
+      for(let i=0;i<responseObj.products.length;i++){
+        console.log(responseObj.products[i].product_name.indexOf(inputValue))
+        if(responseObj.products[i].product_name.indexOf(inputValue) != -1){
+          fillterProducts.products.push(responseObj.products[i])
+        }
+      }
+      printCard(fillterProducts, fillterProducts.products.length)
+      console.log(cardCount)
+   }
+    else{
+      console.log("통신 실패")
+    }
+  }
+})
