@@ -37,7 +37,6 @@ xhr.onload = (data) => {
   if(xhr.status == 200){
     const responseObj = JSON.parse(data.target.responseText)
     printCard(responseObj, responseObj.products.length)
-    console.log(responseObj)
   }
   else{
     console.log("통신 실패")
@@ -49,9 +48,9 @@ const form = document.querySelector("form")
 const input = document.querySelector("input")
 const fillterProducts = {"products": []}
 
-function removeList(count){
-  for (let i=0;i<count;i++){
-    cardList.remove(cardList.firstElementChild)
+function Reset(card){
+  for(let i=0;i<card;i++){
+    cardList.removeChild(cardList.firstElementChild)
   }
 }
 
@@ -64,19 +63,25 @@ form.addEventListener("submit", (event) => {
 
   xhr.onload = (data) => {
     if(xhr.status == 200){
-      const responseObj = JSON.parse(data.target.responseText)
       const cardCount = document.querySelectorAll(".card")
-      removeList(cardCount.length)
-
-      for(let i=0;i<responseObj.products.length;i++){
-        console.log(responseObj.products[i].product_name.indexOf(inputValue))
-        if(responseObj.products[i].product_name.indexOf(inputValue) != -1){
-          fillterProducts.products.push(responseObj.products[i])
+      Reset(cardCount.length)
+      const responseObj = JSON.parse(data.target.responseText)
+      if(inputValue !== ''){
+        for(let i=0;i<responseObj.products.length;i++){
+          responseObj.products[i].product_name.indexOf(inputValue)
+          if(responseObj.products[i].product_name.indexOf(inputValue) != -1){
+            fillterProducts.products.push(responseObj.products[i])
+          }
         }
+        printCard(fillterProducts, fillterProducts.products.length)
+        delete fillterProducts.products
+        fillterProducts.products = []
       }
-      printCard(fillterProducts, fillterProducts.products.length)
-      console.log(cardCount)
-   }
+      else{
+        printCard(responseObj, responseObj.products.length)
+        console.log("결과가 없습니다ㅠㅠ")
+      }
+    }
     else{
       console.log("통신 실패")
     }
