@@ -48,8 +48,8 @@ const form = document.querySelector("form")
 const input = document.querySelector("input")
 const fillterProducts = {"products": []}
 
-function Reset(card){
-  for(let i=0;i<card;i++){
+function Reset(count){
+  for(let i=0;i<count;i++){
     cardList.removeChild(cardList.firstElementChild)
   }
 }
@@ -66,19 +66,18 @@ form.addEventListener("submit", (event) => {
       const cardCount = document.querySelectorAll(".card")
       Reset(cardCount.length)
       const responseObj = JSON.parse(data.target.responseText)
-      if(inputValue !== ''){
-        for(let i=0;i<responseObj.products.length;i++){
-          responseObj.products[i].product_name.indexOf(inputValue)
-          if(responseObj.products[i].product_name.indexOf(inputValue) != -1){
-            fillterProducts.products.push(responseObj.products[i])
-          }
+      for(let i=0;i<responseObj.products.length;i++){
+        responseObj.products[i].product_name.indexOf(inputValue)
+        if(responseObj.products[i].product_name.indexOf(inputValue) != -1){
+          fillterProducts.products.push(responseObj.products[i])
         }
+      }
+      if(fillterProducts.products.length > 0){ 
         printCard(fillterProducts, fillterProducts.products.length)
         delete fillterProducts.products
         fillterProducts.products = []
       }
       else{
-        printCard(responseObj, responseObj.products.length)
         console.log("결과가 없습니다ㅠㅠ")
       }
     }
