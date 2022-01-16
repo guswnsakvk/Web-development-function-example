@@ -8,7 +8,7 @@ input{
 }
 
 .product-list{
-  width: 70%;
+  width: 75%;
 }
 
 .card-list{
@@ -27,5 +27,29 @@ input{
 }
 
 .shopping{
+  width: 100%;
+}
 
+.shopping-box{
+  width: 100%;
+}
+
+.drop-place{
+  width: 90%;
+  height: 100px;
+  background-color: black;
+  margin-top: 10px;
+  margin-left: 15px;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  line-height: 100px;
+}
+
+.total{
+  text-align: right;
+}
+
+.decision{
+  width: 100%;
 }
