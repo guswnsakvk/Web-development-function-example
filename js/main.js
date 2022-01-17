@@ -7,8 +7,10 @@ function printCard(list, count){
     card.classList.add("card")
     card.classList.add("me-4")
     card.classList.add("card-width")
+    card.id = `card${list.products[i].id}`
     const img = document.createElement("img")
     img.src = list.products[i].photo
+    img.id = list.products[i].id
     const cardBody = document.createElement("div")
     cardBody.classList.add("card-body")
     const cardTitle = document.createElement("h5")

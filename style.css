@@ -36,14 +36,14 @@ input{
 
 .drop-place{
   width: 90%;
-  height: 100px;
+  height: 150px;
   background-color: black;
   margin-top: 10px;
   margin-left: 15px;
   border-radius: 5px;
   color: #fff;
   text-align: center;
-  line-height: 100px;
+  line-height: 150px;
 }
 
 .total{
@@ -52,4 +52,50 @@ input{
 
 .decision{
   width: 100%;
+}
+
+.shoppingCard{
+  margin-left: 15px;
+  width: 90%;
+  margin-top: 15px;
+  height: 200px;
+  border-radius: 5px;
+  display: flex;
+}
+
+.shoppingImg{
+  width: 40%;
+  height: 100%;
+  background-color: #eee;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.shoppingImg img{
+  width: 100%;
+  margin-top: 50%;
+}
+
+.shoppingInfo{
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+.product-count{
+  display: flex;
+  position: absolute;
+}
+
+.count-info{
+  background-color: #eee;
+}
+
+.product-count input{
+  position: relative;
+  width: 100px;
+  height: 25px;
+}
+
+.product-total{
+  margin-top: 50px;
 }
