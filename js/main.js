@@ -11,6 +11,13 @@ function printCard(list, count){
     const img = document.createElement("img")
     img.src = list.products[i].photo
     img.id = list.products[i].id
+    img.draggable = true
+    img.ondragstart = function ondragstart_handler(event){
+      event.dataTransfer.setData("test", event.target.id)
+    }
+    img.ondragover = function ondragover_handler(event){
+      event.preventDefault()
+    }
     const cardBody = document.createElement("div")
     cardBody.classList.add("card-body")
     const cardTitle = document.createElement("h5")
@@ -65,7 +72,7 @@ form.addEventListener("submit", (event) => {
 
   xhr.onload = (data) => {
     if(xhr.status == 200){
-      const cardCount = document.querySelectorAll(".card")
+      const cardCount = document.querySelectorAll(".card-list .card")
       Reset(cardCount.length)
       const responseObj = JSON.parse(data.target.responseText)
       for(let i=0;i<responseObj.products.length;i++){
@@ -80,6 +87,7 @@ form.addEventListener("submit", (event) => {
         fillterProducts.products = []
       }
       else{
+        printCard(responseObj, responseObj.products.length)
         console.log("결과가 없습니다ㅠㅠ")
       }
     }
@@ -88,3 +96,20 @@ form.addEventListener("submit", (event) => {
     }
   }
 })
+
+function ondragover_handler(event){
+  event.preventDefault()
+}
+
+function ondrop_handler(event){
+  const data = event.dataTransfer.getData("test")
+  const test1 = document.querySelector(`#card${data}`)
+  const test2 = test1.querySelector(".card-title")
+  const test3 = test1.querySelector(".card-text")
+  const test4 = test1.querySelector(".price")
+  console.log(data)
+  console.log(test1)
+  console.log(test2.innerText)
+  console.log(test3.innerText)
+  console.log(test4.innerText)
+}

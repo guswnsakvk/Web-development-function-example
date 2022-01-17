@@ -8,7 +8,7 @@ input{
 }
 
 .product-list{
-  width: 75%;
+  min-width: 800px;
 }
 
 .card-list{
@@ -32,6 +32,7 @@ input{
 
 .shopping-box{
   width: 100%;
+  max-width: 300px;
 }
 
 .drop-place{
@@ -40,14 +41,11 @@ input{
   background-color: black;
   margin-top: 10px;
   margin-left: 15px;
+  margin-bottom: 10px;
   border-radius: 5px;
   color: #fff;
   text-align: center;
   line-height: 150px;
-}
-
-.total{
-  text-align: right;
 }
 
 .decision{
@@ -57,7 +55,7 @@ input{
 .shoppingCard{
   margin-left: 15px;
   width: 90%;
-  margin-top: 15px;
+  margin-bottom: 10px;
   height: 200px;
   border-radius: 5px;
   display: flex;
@@ -69,11 +67,13 @@ input{
   background-color: #eee;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  
 }
 
 .shoppingImg img{
   width: 100%;
   margin-top: 50%;
+  max-width: 150px;
 }
 
 .shoppingInfo{
@@ -98,4 +98,12 @@ input{
 
 .product-total{
   margin-top: 50px;
+}
+
+.total{
+  text-align: right;
+}
+
+.buy-button{
+  width: 100%;
 }

@@ -24,8 +24,8 @@
     <div class="shopping">
       <h1>장바구니</h1>
       <div class="shopping-list mt-4">
-        <div class="card shopping-box" >
-          <div class="drop-place">이곳에 상품을 놓아주세요</div>
+        <div class="card shopping-boxs" >
+          <div class="drop-place" ondrop="ondrop_handler(event)" ondragover="ondragover_handler(event)">이곳에 상품을 놓아주세요</div>
           <div class="shopping-box">
             <div class="shoppingCard">
               <div class="shoppingImg">
@@ -42,12 +42,10 @@
                 <h6 class="product-total">합계: 100000</h6>
               </div>
             </div>
-          </div>
-          <div class="card-body">
-            <p class="card-text total">총합: 0</p>
-            <a href="#" class="btn btn-primary decision">구매하기</a>
+            <h6 class="total">총합: 0</h6>
           </div>
         </div>
+        <div class="buy-button btn btn-primary">구매하기</div>
       </div>
     </div>
   </div>
