@@ -143,7 +143,7 @@ function ondrop_handler(event){
 
     const shoppingInfo = document.createElement("div")
     shoppingInfo.classList.add("shoppingInfo")
-    const productName = document.createElement("h5")
+    const productName = document.createElement("h6")
     productName.classList.add("product-name")
     productName.innerHTML = `${dropTitle.innerText}`
     const productBrand = document.createElement("h6")
@@ -177,11 +177,19 @@ function ondrop_handler(event){
     shoppingCard.append(shoppingInfo)
     shoppingBoxList.append(shoppingCard)
 
+    const valueChange = document.querySelector(`.get-count${data}`)
+    console.log(valueChange)
+    valueChange.addEventListener("change", ()=>{
+      productTotal.innerText = `합계: ${valueChange.value * parseInt(dropPrice.innerText)}`
+      console.log(valueChange.value)
+      prices[data] = parseInt(`${valueChange.value * parseInt(dropPrice.innerText)}`)
+      PurchasePrice(prices)
+      console.log(prices)
+    })
+
     prices[data] = parseInt(`${dropPrice.innerText}`)
     PurchasePrice(prices)
-    console.log(prices)
   }
-  
   // console.log(data)
   // console.log(drop)
   // console.log(dropTitle.innerText)

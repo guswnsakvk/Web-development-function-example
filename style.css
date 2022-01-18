@@ -32,7 +32,7 @@ input{
 
 .shopping-box{
   width: 100%;
-  max-width: 300px;
+  min-width: 300px;
 }
 
 .drop-place{
