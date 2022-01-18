@@ -97,19 +97,80 @@ form.addEventListener("submit", (event) => {
   }
 })
 
+//drag and drop
+const shoppingBox = document.querySelector(".shopping-box")
+const shoppingBoxList = document.querySelector(".shopping-box-list")
+let dropItemId = []
+
 function ondragover_handler(event){
   event.preventDefault()
 }
 
 function ondrop_handler(event){
   const data = event.dataTransfer.getData("test")
-  const test1 = document.querySelector(`#card${data}`)
-  const test2 = test1.querySelector(".card-title")
-  const test3 = test1.querySelector(".card-text")
-  const test4 = test1.querySelector(".price")
-  console.log(data)
-  console.log(test1)
-  console.log(test2.innerText)
-  console.log(test3.innerText)
-  console.log(test4.innerText)
+
+  dropItemId.forEach(function(element){
+    if(element == data){
+      alert("장바구니에 이미 있습니다")
+      return
+    }
+  })
+
+  dropItemId.push(data)
+
+  const drop = document.querySelector(`#card${data}`)
+  const dropTitle = drop.querySelector(".card-title")
+  const dropBrand = drop.querySelector(".card-text")
+  const dropPrice = drop.querySelector(".price")
+
+  const shoppingCard = document.createElement("div")
+  shoppingCard.classList.add("shoppingCard")
+  const shoppingImgPlace = document.createElement("div")
+  shoppingImgPlace.classList.add("shoppingImg")
+  const shoppingImg = document.createElement("img")
+  shoppingImg.src = `pr${parseInt(data)+1}.JPG`
+  shoppingImgPlace.append(shoppingImg)
+  shoppingCard.append(shoppingImgPlace)
+
+  const shoppingInfo = document.createElement("div")
+  shoppingInfo.classList.add("shoppingInfo")
+  const productName = document.createElement("h5")
+  productName.classList.add("product-name")
+  productName.innerHTML = `${dropTitle.innerText}`
+  const productBrand = document.createElement("h6")
+  productBrand.classList.add("product-brand")
+  productBrand.innerText = `${dropBrand.innerText}`
+  const productPrice = document.createElement("h6")
+  productPrice.classList.add("product-price")
+  productPrice.innerText = `${dropPrice.innerText}`
+  shoppingInfo.append(productName)
+  shoppingInfo.append(productBrand)
+  shoppingInfo.append(productPrice)
+
+  const productCount = document.createElement("div")
+  productCount.classList.add("product-count")
+  const countInfo = document.createElement("p")
+  countInfo.classList.add("count-info")
+  countInfo.innerText = "수량"
+  const getCount = document.createElement("input")
+  getCount.classList.add("get-count")
+  getCount.type = "number"
+  getCount.min = "0"
+  getCount.value = "1"
+  productCount.append(countInfo)
+  productCount.append(getCount)
+  shoppingInfo.append(productCount)
+
+  const productTotal = document.createElement("h6")
+  productTotal.classList.add("product-total")
+  productTotal.innerText = `합계: ${dropPrice.innerText}`
+  shoppingInfo.append(productTotal)
+  shoppingCard.append(shoppingInfo)
+  shoppingBoxList.append(shoppingCard)
+
+  // console.log(data)
+  // console.log(drop)
+  // console.log(dropTitle.innerText)
+  // console.log(dropBrand.innerText)
+  // console.log(dropPrice.innerText)
 }
