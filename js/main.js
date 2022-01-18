@@ -99,7 +99,9 @@ form.addEventListener("submit", (event) => {
 
 //drag and drop
 const shoppingBoxList = document.querySelector(".shopping-box-list")
+const total = document.querySelector(".total")
 let dropItemId = []
+const prices = [0,0,0,0]
 let overlapCheck = false
 
 function ondragover_handler(event){
@@ -148,7 +150,7 @@ function ondrop_handler(event){
     productBrand.classList.add("product-brand")
     productBrand.innerText = `${dropBrand.innerText}`
     const productPrice = document.createElement("h6")
-    productPrice.classList.add("product-price")
+    productPrice.classList.add(`product-price${data}`)
     productPrice.innerText = `${dropPrice.innerText}`
     shoppingInfo.append(productName)
     shoppingInfo.append(productBrand)
@@ -160,7 +162,7 @@ function ondrop_handler(event){
     countInfo.classList.add("count-info")
     countInfo.innerText = "수량"
     const getCount = document.createElement("input")
-    getCount.classList.add("get-count")
+    getCount.classList.add(`get-count${data}`)
     getCount.type = "number"
     getCount.min = "0"
     getCount.value = "1"
@@ -174,6 +176,10 @@ function ondrop_handler(event){
     shoppingInfo.append(productTotal)
     shoppingCard.append(shoppingInfo)
     shoppingBoxList.append(shoppingCard)
+
+    prices[data] = parseInt(`${dropPrice.innerText}`)
+    PurchasePrice(prices)
+    console.log(prices)
   }
   
   // console.log(data)
@@ -181,4 +187,12 @@ function ondrop_handler(event){
   // console.log(dropTitle.innerText)
   // console.log(dropBrand.innerText)
   // console.log(dropPrice.innerText)
+}
+
+function PurchasePrice(prices){
+  let sum = 0
+  prices.forEach(price => {
+    sum += price
+  })
+  total.innerText = `총합: ${sum}`
 }
