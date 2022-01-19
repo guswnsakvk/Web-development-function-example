@@ -134,6 +134,7 @@ function ondrop_handler(event){
 
     const shoppingCard = document.createElement("div")
     shoppingCard.classList.add("shoppingCard")
+    shoppingCard.classList.add(`card${data}`)
     const shoppingImgPlace = document.createElement("div")
     shoppingImgPlace.classList.add("shoppingImg")
     const shoppingImg = document.createElement("img")
@@ -185,6 +186,24 @@ function ondrop_handler(event){
       prices[data] = parseInt(`${valueChange.value * parseInt(dropPrice.innerText)}`)
       PurchasePrice(prices)
       console.log(prices)
+    })
+
+    const icon = document.createElement("i")
+    icon.classList.add("fas")
+    icon.classList.add("fa-times")
+    icon.classList.add(`icon${data}`)
+    shoppingCard.append(icon)
+    const removeItem = document.querySelector(`.icon${data}`)
+    removeItem.addEventListener("click", function(event){
+      event.target.parentElement.remove()
+      prices[data] = 0
+      PurchasePrice(prices)
+     for(let i=0;i<dropItemId.length;i++){
+       if(dropItemId[i] === data){
+         dropItemId.splice(i,1)
+         i--
+       }
+     }
     })
 
     prices[data] = parseInt(`${dropPrice.innerText}`)

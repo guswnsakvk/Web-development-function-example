@@ -107,3 +107,9 @@ input{
 .buy-button{
   width: 100%;
 }
+
+.fa-times{
+  margin-left: 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
