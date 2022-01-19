@@ -263,4 +263,16 @@ buyButton.addEventListener("click", function(event){
 
 closeReceipt.addEventListener("click", function(){
   receipt.classList.add("hidden")
+
+  for(let i=0;i<dropItemId.length;i++){
+    shoppingBoxList.removeChild(shoppingBoxList.firstElementChild)
+    prices[`${dropItemId[i]}`] = 0
+    if(dropItemId[i]){
+      dropItemId.splice(i,1)
+      i--
+    }
+  }
+  console.log(prices)
+  console.log(dropItemId)
+  PurchasePrice(prices)
 })
