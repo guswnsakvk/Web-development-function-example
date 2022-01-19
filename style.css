@@ -1,3 +1,7 @@
+.hidden{
+  display: none;
+}
+
 input{
   width: 100%;
   border-radius: 5px;
@@ -112,4 +116,21 @@ input{
   margin-left: 30px;
   cursor: pointer;
   font-size: 20px;
+}
+
+.receipt{
+  border: 2px solid #eee;
+  width: 500px;
+  background-color: #fff;
+  position: absolute;
+  top: 100px;
+  left: 35%;
+}
+
+#canvas{
+  overflow: scroll;
+}
+
+.close{
+  margin-left: 30px;
 }
