@@ -173,6 +173,7 @@ function ondrop_handler(event){
 
     const productTotal = document.createElement("h6")
     productTotal.classList.add(`product-total${data}`)
+    productTotal.classList.add("product-total-place")
     productTotal.innerText = `합계: ${dropPrice.innerText}`
     shoppingInfo.append(productTotal)
     shoppingCard.append(shoppingInfo)
@@ -227,7 +228,6 @@ canvas.width = 0
 canvas.height = 0
 
 buyButton.addEventListener("click", function(event){
-  console.log(receipt)
   receipt.classList.remove("hidden")
   const year = today.getFullYear()
   const month = today.getMonth() + 1
@@ -272,7 +272,5 @@ closeReceipt.addEventListener("click", function(){
       i--
     }
   }
-  console.log(prices)
-  console.log(dropItemId)
   PurchasePrice(prices)
 })
